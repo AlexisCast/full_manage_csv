@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "dev_ts": "ts-node server.ts",
-    "dev_js": "node server.js",
+    "start_js": "node server.js",
+    "start_ts": "ts-node server.ts",
+    "dev_ts": "npx nodemon server.ts",
+    "dev_js": "npx nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -19,6 +21,7 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.11",
+    "nodemon": "^3.1.0",
     "typescript": "^5.4.5"
   }
 }
