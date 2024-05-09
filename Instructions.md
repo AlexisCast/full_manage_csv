@@ -47,7 +47,9 @@ Backend
   - Or this route should return status 500 and an object with the key "message" with an error message in the value.
 
 - [GET /api/users] 
-  - Should include an endpoint that allows the frontend to search through the loaded CSV data. This route should accept a ?q= query parameter for search terms and should search through EVERY column of the CSV. The filter should search for partial matches and also be case insensitive.
+  - Should include an endpoint that allows the frontend to search through the loaded CSV data. 
+  - This route should accept a ?q= query parameter for search terms and should search through EVERY column of the CSV. 
+  - The filter should search for partial matches and also be case insensitive.
   - This route should return status 200 and an object with the key "data" with an array of objects inside it.
   - Or this route should return status 500 and an object with the key "message" with an error message in the value.
 
