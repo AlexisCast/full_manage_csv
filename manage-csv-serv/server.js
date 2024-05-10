@@ -42,7 +42,6 @@ app.post("/api/files", upload.single("file"), async (req, res) => {
 	try {
 		// 4) transform file (buffer) to string
 		const rawCSV = Buffer.from(file.buffer).toString("utf-8");
-		console.log(rawCSV);
 
 		// 5) transform string string to JSON
 		json = csvToJson.fieldDelimiter(",").csvStringToJson(rawCSV);
@@ -63,11 +62,27 @@ app.post("/api/files", upload.single("file"), async (req, res) => {
 
 app.get("/api/users", async (req, res) => {
 	// 1) extract the query param 'q' from the request
+	const { q } = req.query;
+
 	// 2) validate that we have the query param
+	if (!q) {
+		return res.status(500).json({
+			message: "Query param 'q' is required.",
+		});
+	}
+
 	// 3) filter the data from the db (or memory) with the query param
+	const search = q.toString().toLowerCase();
+
+	const filteredData = userData.filter((row) => {
+		return Object.values(row).some((value) =>
+			value.toLowerCase().includes(search)
+		);
+	});
+
 	// 4) return 200 with the filterd data
 	return res.status(200).json({
-		data: [],
+		data: filteredData,
 	});
 	// 5) return 500 with  object with the key "message" with an error message in the value
 });
